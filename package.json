@@ -1,12 +1,22 @@
 {
-  "name": "angularjs-seed",
+  "name": "Buzz",
   "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
-  "devDependencies": {
-    "phantomjs" : "~1.9",
-    "karma" : "~0.10",
-    "karma-junit-reporter" : "~0.1",
-    "karma-jasmine" : "~0.1",
-    "protractor" : "~0.17.0"
-  }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turtleguyy/buzz"
+  },
+  "bugs": {
+    "url": "https://github.com/turtleguyy/buzz/issues"
+  },
+  "version": "1.0.0",
+  "main": "web-server.js",
+  "dependencies": {
+    "connect": "~2.14.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zachary Nicoll",
+  "license": "BSD"
 }

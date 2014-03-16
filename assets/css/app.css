@@ -1,0 +1,82 @@
+@-webkit-keyframes come-back {
+  0%   { right: -50%; }
+  100% { right: 25%; }
+}
+
+@-webkit-keyframes go-away {
+  0%   { right: 25%; }
+  100% { right: 100%; }
+}
+
+@-webkit-keyframes transition-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes transition-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+html, body {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.bee {
+  top: 25%;
+  right: 25%;
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: url('../img/bee.png') no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.bee.go-away {
+  -webkit-animation: go-away 750ms 1;
+  -webkit-animation-timing-function: ease-in;
+}
+
+.bee.come-back {
+  -webkit-animation: come-back 750ms 1;
+  -webkit-animation-timing-function: ease-out;
+}
+
+h1 {
+  height: 100%;
+  margin: 0;
+  display: none;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h1::before {
+  height: 100%;
+  margin-right: -0.25em;
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+}
+
+h1.in {
+  -webkit-animation: transition-in 100ms 1;
+  -webkit-animation-timing-function: ease-out;
+}
+
+h1.out {
+  -webkit-animation: transition-out 1000ms 1;
+  -webkit-animation-timing-function: ease-in;
+}
+
+h1 span {
+  vertical-align: middle;
+}
+
+.slabtextdone .slabtext {
+  display: inline-block;
+}
