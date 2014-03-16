@@ -1,6 +1,6 @@
 {
   "name": "Buzz",
-  "description": "A starter project for AngularJS",
+  "description": "Just a song.",
   "repository": {
     "type": "git",
     "url": "https://github.com/turtleguyy/buzz"
@@ -13,10 +13,8 @@
   "dependencies": {
     "connect": "~2.14.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zachary Nicoll",
-  "license": "BSD"
 }
