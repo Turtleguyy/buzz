@@ -10,8 +10,8 @@
   </head>
 
   <body ng-controller="ApplicationController as app">
-    <div class="bee come-back"></div>
-    <h1 class="out">Buzz</h1>
+    <div class="bee {{app.beeState}}" ng-click="app.onBeeClick()" ng-show="app.shouldShowBee"></div>
+    <h1 class="out"><span class="slabtext">{{app.currentLine}}</span></h1>
 
     <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="http://code.angularjs.org/1.2.13/angular.min.js"></script>

@@ -1,7 +1,27 @@
 var app = angular.module('buzz', []);
 app.controller('ApplicationController', function() {
 
-  var lyrics = [
+  this.beeState      = 'come-back';
+  this.currentLine   = song.currentLine;
+  this.shouldShowBee = true;
+
+  this.onBeeClick = function() {
+    this.beeState = 'go-away';
+
+    var _this = this;
+    setTimeout(function() {
+      _this.shouldShowBee = false;
+    }, 750);
+  };
+});
+
+var song = {
+  currentLine: '',
+  shouldShowBee: true,
+
+  _h1: $('h1'),
+  _bee: $('.bee'),
+  _lyrics: [
     { text: 'Buzz', delay: 0 },
     { text: 'Buzz', delay: 1250 },
     { text: 'What\'s the buzz?', delay: 1500 },
@@ -12,59 +32,66 @@ app.controller('ApplicationController', function() {
     { text: 'sweet as honey', delay: 1750 },
     { text: 'you\'re my fuzzy wuzzy', delay: 2000 },
     { text: 'babee', delay: 1500 }
-  ];
+  ],
 
-  function init() {
-    attachEventListeners();
-  };
+  init: function() {
+    // this.attachEventListeners();
+  },
 
-  function attachEventListeners() {
-    $('.bee').on('click', onBeeClick);
-  };
+  attachEventListeners: function() {
+    this._bee.on('click', $.proxy(this, 'onBeeClick'));
+  },
 
-  function bringBackTheBee() {
-    transitionText(1500);
+  bringBackTheBee: function() {
+    this.transitionText(1500);
     setTimeout(function() {
-      $('h1').hide();
-      $bee.show().toggleClass('go-away come-back');
+      song._h1.hide();
+      song._bee.show().toggleClass('go-away come-back');
     }, 2500);
-  };
+  },
 
-  function changeText(text, line) {
-    $('h1').html(text).slabText().toggleClass('in out');
+  changeText: function(text, line) {
+    this.setCurrentLine(line);
+    $('h1').toggleClass('in out');
 
-    if (line + 1 < lyrics.length) {
-      nextLine(line + 1);
+    if (line + 1 < this._lyrics.length) {
+      this.nextLine(line + 1);
     } else {
-      bringBackTheBee();
+      this.bringBackTheBee();
     }
-  };
+  },
 
-  function nextLine(line) {
-    var lyric = lyrics[line];
-    transitionText(lyric.delay - 1000);
+  nextLine: function(line) {
+    var lyric = this._lyrics[line];
+    this.transitionText(lyric.delay - 1000);
 
     setTimeout(function() {
-      changeText(lyric.text, line);
+      song.changeText(lyric.text, line);
     }, lyric.delay);
-  };
+  },
 
-  function transitionText(delay) {
+  setCurrentLine: function(line) {
+    this.currentLine = this._lyrics[line].text;
+    this._h1.slabText();
+  },
+
+  transitionText: function(delay) {
     setTimeout(function() {
-      $('h1').toggleClass('in out');
+      song._h1.toggleClass('in out');
     }, delay);
-  };
+  },
 
-  function onBeeClick() {
-    $bee = $('.bee');
-    $bee.toggleClass('go-away come-back');
+  onBeeClick: function() {
+    this._bee.toggleClass('go-away come-back');
 
+    this.setCurrentLine(0);
     setTimeout(function() {
-      $bee.hide().siblings('h1').show().toggleClass('in out');
-      nextLine(0);
+      song.shouldShowBee = false;
+      // song._bee.hide().siblings('h1').show().toggleClass('in out');
+      song._h1.show().toggleClass('in out');
+      song.nextLine(0);
     }, 750);
-  };
+  }
+};
 
-  init();
-
-});
+song.init();
